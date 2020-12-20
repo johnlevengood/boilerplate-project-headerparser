@@ -13,7 +13,7 @@ app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 20
 app.use(express.json())
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
-
+app.set('trust proxy', true)
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
@@ -36,6 +36,6 @@ app.get('/api/whoami', (req,res) => {
 
 
 // listen for requests :)
-app.listen(PORT, function () {
+app.listen(PORT, '0.0.0.0', function () {
   console.log('Your app is listening on port ' + PORT);
 });
